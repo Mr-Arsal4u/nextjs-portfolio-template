@@ -1,0 +1,1323 @@
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen - Full Stack Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["var(--font-sans)"],
+                    mono: ["var(--font-mono)"],
+                },
+                animation: {
+                    'glow': 'glow 2s ease-in-out infinite alternate',
+                    'float': 'float 6s ease-in-out infinite',
+                    'typewriter': 'typewriter 4s steps(40) infinite',
+                    'magnetic': 'magnetic 0.3s ease-out',
+                }
+            },
+        }
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+    <style>
+        :root {
+            --background: hsl(240 19% 6%);
+            --foreground: hsl(240 5% 96%);
+            --card: hsl(240 10% 8%);
+            --card-foreground: hsl(240 5% 90%);
+            --primary: hsl(186 100% 60%);
+            --primary-foreground: hsl(240 19% 6%);
+            --secondary: hsl(240 5% 15%);
+            --secondary-foreground: hsl(240 5% 90%);
+            --muted: hsl(240 5% 25%);
+            --muted-foreground: hsl(240 5% 65%);
+            --accent: hsl(186 100% 60%);
+            --accent-foreground: hsl(240 19% 6%);
+            --border: hsl(240 6% 20%);
+            --input: hsl(240 6% 20%);
+            --ring: hsl(186 100% 60%);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #4c1d95 100%);
+            color: var(--foreground);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee, #84cc16, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Neon Glow */
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .neon-glow:hover {
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.8);
+        }
+
+        /* Animations */
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
+            to { box-shadow: 0 0 30px rgba(34, 211, 238, 0.6); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes typewriter {
+            0%, 25% { content: "Full Stack Developer"; }
+            26%, 50% { content: "Software Engineer"; }
+            51%, 75% { content: "Creative Coder"; }
+            76%, 100% { content: "Tech Innovator"; }
+        }
+
+        @keyframes magnetic {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* 3D Transform Effects */
+        .skill-node {
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-node:hover {
+            transform: translateZ(20px) rotateY(10deg);
+        }
+
+        .project-card {
+            perspective: 1000px;
+        }
+
+        .project-card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .project-card:hover .project-card-inner {
+            transform: rotateY(5deg) translateZ(10px);
+        }
+
+        /* Typewriter Effect */
+        .typewriter::after {
+            content: "Full Stack Developer";
+            animation: typewriter 4s steps(20) infinite;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #22d3ee, #84cc16);
+            border-radius: 4px;
+        }
+
+        /* Responsive Cursor Hide on Mobile */
+        @media (max-width: 768px) {
+            .cursor, .cursor-glow {
+                display: none;
+            }
+            body {
+                cursor: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- @COMPONENT: Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass transition-all duration-300" data-mock="true">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold gradient-text" data-bind="user.name">Alex Chen</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-foreground hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="text-foreground hover:text-primary transition-colors">About</a>
+                    <a href="#experience" class="text-foreground hover:text-primary transition-colors">Experience</a>
+                    <a href="#skills" class="text-foreground hover:text-primary transition-colors">Skills</a>
+                    <a href="#projects" class="text-foreground hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="text-foreground hover:text-primary transition-colors">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-lg glass neon-glow hover:scale-110 transition-transform" data-event="click:toggleTheme">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                        </svg>
+                    </button>
+                    <button class="md:hidden p-2 rounded-lg glass">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="4" x2="20" y1="12" y2="12"/>
+                            <line x1="4" x2="20" y1="6" y2="6"/>
+                            <line x1="4" x2="20" y1="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Side - Text Content -->
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-6xl md:text-8xl font-bold leading-tight">
+                            <span class="block">Hi, I'm</span>
+                            <span class="block gradient-text">Alex Chen</span>
+                        </h1>
+                        <div class="text-2xl md:text-3xl text-muted-foreground font-mono">
+                            <span class="typewriter" data-mock="true"></span>
+                        </div>
+                    </div>
+                    <p class="text-xl text-muted-foreground max-w-lg" data-mock="true">
+                        Crafting digital experiences with cutting-edge technologies. 
+                        Passionate about clean code, innovative solutions, and building the future of web.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium neon-glow hover:scale-105 transition-transform" data-event="click:scrollToProjects">
+                            View My Work
+                        </button>
+                        <button class="px-8 py-4 glass rounded-lg font-medium hover:scale-105 transition-transform" data-event="click:downloadCV">
+                            Download CV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Side - 3D Interactive Object -->
+                <div class="relative h-96 lg:h-[500px]">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <!-- @FUNCTIONALITY: This should be a Three.js interactive 3D object (rotating cube/globe) -->
+                        <div class="w-64 h-64 relative animate-float" data-implementation="Replace with Three.js 3D object">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-3xl transform rotate-12 opacity-20 animate-glow"></div>
+                            <div class="absolute inset-2 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-2xl glass backdrop-blur-xl">
+                                <div class="h-full flex items-center justify-center">
+                                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-primary">
+                                        <polyline points="16,18 22,12 16,6"/>
+                                        <polyline points="8,6 2,12 8,18"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating Elements -->
+                    <div class="absolute top-10 right-10 w-4 h-4 bg-primary rounded-full animate-pulse"></div>
+                    <div class="absolute bottom-20 left-10 w-6 h-6 bg-accent rounded-full animate-bounce"></div>
+                    <div class="absolute top-32 left-20 w-3 h-3 bg-secondary rounded-full animate-ping"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: About Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">About Me</h2>
+                <p class="text-xl text-muted-foreground">Passionate developer with a love for creating innovative solutions</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold mb-4 gradient-text">My Journey</h3>
+                        <p class="text-muted-foreground leading-relaxed" data-mock="true">
+                            With 5+ years of experience in full-stack development, I've worked with startups 
+                            and enterprise companies to build scalable web applications. My passion lies in 
+                            creating seamless user experiences backed by robust, efficient code.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold mb-4 gradient-text">What I Do</h3>
+                        <div class="grid grid-cols-2 gap-4" data-mock="true">
+                            <div class="space-y-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                    <span>Frontend Development</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-accent rounded-full"></div>
+                                    <span>Backend Architecture</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-secondary rounded-full"></div>
+                                    <span>DevOps & Cloud</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                    <span>UI/UX Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <!-- Professional workspace image -->
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                             alt="Modern tech workspace with multiple monitors" 
+                             class="w-full h-96 object-cover" data-mock-image="true"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <div class="glass-card rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="font-medium">Currently Learning</p>
+                                        <p class="text-sm text-muted-foreground">AI/ML Integration</p>
+                                    </div>
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 12l2 2 4-4"/>
+                                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                                            <path d="M3 12c0 8.284 6.716 15 15 15"/>
+                                            <path d="M21 12c0 8.284-6.716 15-15 15"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: About Section -->
+
+    <!-- @COMPONENT: Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Experience</h2>
+                <p class="text-xl text-muted-foreground">My professional journey through the tech world</p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-secondary"></div>
+                
+                <div class="space-y-12">
+                    <!-- @MAP: experiences.map(experience => ( -->
+                    <div class="flex items-start space-x-8" data-mock="true">
+                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center glass-card">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6 9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1 glass-card rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold gradient-text">Senior Full Stack Developer</h3>
+                                    <p class="text-lg text-muted-foreground">TechCorp Solutions</p>
+                                </div>
+                                <div class="text-sm font-mono text-primary">2022 - Present</div>
+                            </div>
+                            <p class="text-muted-foreground mb-4">
+                                Led development of microservices architecture serving 1M+ users. 
+                                Implemented CI/CD pipelines and mentored junior developers.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">React</span>
+                                <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">Node.js</span>
+                                <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">AWS</span>
+                                <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-8" data-mock="true">
+                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center glass-card">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1 glass-card rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold gradient-text">Frontend Developer</h3>
+                                    <p class="text-lg text-muted-foreground">StartupCo</p>
+                                </div>
+                                <div class="text-sm font-mono text-primary">2020 - 2022</div>
+                            </div>
+                            <p class="text-muted-foreground mb-4">
+                                Built responsive web applications from scratch. Collaborated with design team 
+                                to create pixel-perfect UI implementations.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Vue.js</span>
+                                <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">TypeScript</span>
+                                <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-8" data-mock="true">
+                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-secondary to-primary rounded-full flex items-center justify-center glass-card">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1 glass-card rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-semibold gradient-text">Junior Developer</h3>
+                                    <p class="text-lg text-muted-foreground">WebDev Agency</p>
+                                </div>
+                                <div class="text-sm font-mono text-primary">2019 - 2020</div>
+                            </div>
+                            <p class="text-muted-foreground mb-4">
+                                Started my professional journey building client websites and learning 
+                                modern web development practices.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">HTML/CSS</span>
+                                <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">JavaScript</span>
+                                <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">WordPress</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Experience Section -->
+
+    <!-- @COMPONENT: Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Skills</h2>
+                <p class="text-xl text-muted-foreground">My technical expertise and tools</p>
+            </div>
+
+            <!-- @FUNCTIONALITY: This should be a 3D interactive skill constellation with Three.js -->
+            <div class="relative h-96 mb-16" data-implementation="Replace with Three.js 3D skill constellation">
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 h-full">
+                    <!-- @MAP: skills.map(skill => ( -->
+                    <div class="skill-node flex flex-col items-center justify-center space-y-2 glass-card rounded-2xl p-4 hover:neon-glow cursor-pointer" data-mock="true">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium">React</span>
+                    </div>
+
+                    <div class="skill-node flex flex-col items-center justify-center space-y-2 glass-card rounded-2xl p-4 hover:neon-glow cursor-pointer" data-mock="true">
+                        <div class="w-12 h-12 bg-gradient-to-r from-accent to-secondary rounded-lg flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <line x1="9" x2="9.01" y1="9" y2="9"/>
+                                <line x1="15" x2="15.01" y1="9" y2="9"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium">Node.js</span>
+                    </div>
+
+                    <div class="skill-node flex flex-col items-center justify-center space-y-2 glass-card rounded-2xl p-4 hover:neon-glow cursor-pointer" data-mock="true">
+                        <div class="w-12 h-12 bg-gradient-to-r from-secondary to-primary rounded-lg flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium">TypeScript</span>
+                    </div>
+
+                    <div class="skill-node flex flex-col items-center justify-center space-y-2 glass-card rounded-2xl p-4 hover:neon-glow cursor-pointer" data-mock="true">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium">Python</span>
+                    </div>
+
+                    <div class="skill-node flex flex-col items-center justify-center space-y-2 glass-card rounded-2xl p-4 hover:neon-glow cursor-pointer" data-mock="true">
+                        <div class="w-12 h-12 bg-gradient-to-r from-accent to-secondary rounded-lg flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+                                <path d="M3 12A9 3 0 0 0 21 12"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium">MongoDB</span>
+                    </div>
+
+                    <div class="skill-node flex flex-col items-center justify-center space-y-2 glass-card rounded-2xl p-4 hover:neon-glow cursor-pointer" data-mock="true">
+                        <div class="w-12 h-12 bg-gradient-to-r from-secondary to-primary rounded-lg flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium">AWS</span>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+            </div>
+
+            <!-- Skill Categories -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-8 text-center" data-mock="true">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Frontend</h3>
+                    <div class="space-y-2 text-muted-foreground">
+                        <p>React, Vue.js, Next.js</p>
+                        <p>TypeScript, JavaScript</p>
+                        <p>Tailwind CSS, SCSS</p>
+                        <p>Three.js, Framer Motion</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center" data-mock="true">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="16" height="20" x="4" y="2" rx="2" ry="2"/>
+                            <path d="M9 22v-4h6v4"/>
+                            <path d="M8 6h.01"/>
+                            <path d="M16 6h.01"/>
+                            <path d="M12 6h.01"/>
+                            <path d="M12 10h.01"/>
+                            <path d="M12 14h.01"/>
+                            <path d="M16 10h.01"/>
+                            <path d="M16 14h.01"/>
+                            <path d="M8 10h.01"/>
+                            <path d="M8 14h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Backend</h3>
+                    <div class="space-y-2 text-muted-foreground">
+                        <p>Node.js, Express</p>
+                        <p>Python, Django</p>
+                        <p>PostgreSQL, MongoDB</p>
+                        <p>GraphQL, REST APIs</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center" data-mock="true">
+                    <div class="w-16 h-16 bg-gradient-to-r from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">DevOps</h3>
+                    <div class="space-y-2 text-muted-foreground">
+                        <p>AWS, Google Cloud</p>
+                        <p>Docker, Kubernetes</p>
+                        <p>CI/CD, GitHub Actions</p>
+                        <p>Monitoring, Analytics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Skills Section -->
+
+    <!-- @COMPONENT: Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Projects</h2>
+                <p class="text-xl text-muted-foreground">Some of my favorite work</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- @MAP: projects.map(project => ( -->
+                <div class="project-card group" data-mock="true">
+                    <div class="project-card-inner">
+                        <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                            <!-- Modern coding environment showing development work -->
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
+                                 alt="Code editor with colorful syntax highlighting" 
+                                 class="w-full h-48 object-cover"/>
+                            
+                            <div class="p-8">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-semibold gradient-text">E-Commerce Platform</h3>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15,3 21,3 21,9"/>
+                                                <line x1="10" x2="21" y1="14" y2="3"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-muted-foreground mb-6">
+                                    A full-featured e-commerce platform built with React and Node.js. 
+                                    Features include real-time inventory, payment processing, and admin dashboard.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">React</span>
+                                    <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">Node.js</span>
+                                    <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">MongoDB</span>
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Stripe</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <button class="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform">
+                                        View Details
+                                    </button>
+                                    <div class="flex items-center space-x-4 text-sm text-muted-foreground">
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                            </svg>
+                                            <span>124</span>
+                                        </span>
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                            <span>32</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group" data-mock="true">
+                    <div class="project-card-inner">
+                        <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                            <!-- Abstract geometric design representing creative coding -->
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
+                                 alt="Abstract geometric pattern in vibrant colors" 
+                                 class="w-full h-48 object-cover"/>
+                            
+                            <div class="p-8">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-semibold gradient-text">AI Analytics Dashboard</h3>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15,3 21,3 21,9"/>
+                                                <line x1="10" x2="21" y1="14" y2="3"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-muted-foreground mb-6">
+                                    Advanced analytics dashboard with machine learning insights. 
+                                    Real-time data visualization and predictive analytics for business intelligence.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Vue.js</span>
+                                    <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">Python</span>
+                                    <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">TensorFlow</span>
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">D3.js</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <button class="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform">
+                                        View Details
+                                    </button>
+                                    <div class="flex items-center space-x-4 text-sm text-muted-foreground">
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                            </svg>
+                                            <span>89</span>
+                                        </span>
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                            <span>15</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group" data-mock="true">
+                    <div class="project-card-inner">
+                        <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                            <!-- Modern developer workspace setup -->
+                            <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
+                                 alt="Clean modern workspace with laptop and tech accessories" 
+                                 class="w-full h-48 object-cover"/>
+                            
+                            <div class="p-8">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-semibold gradient-text">Real-Time Chat App</h3>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15,3 21,3 21,9"/>
+                                                <line x1="10" x2="21" y1="14" y2="3"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-muted-foreground mb-6">
+                                    Modern chat application with real-time messaging, file sharing, 
+                                    and video calls. Built with Socket.io and WebRTC technology.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Next.js</span>
+                                    <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">Socket.io</span>
+                                    <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">WebRTC</span>
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Redis</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <button class="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform">
+                                        View Details
+                                    </button>
+                                    <div class="flex items-center space-x-4 text-sm text-muted-foreground">
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                            </svg>
+                                            <span>67</span>
+                                        </span>
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                            <span>28</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card group" data-mock="true">
+                    <div class="project-card-inner">
+                        <div class="glass-card rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                            <!-- Complex coding environment with multiple screens -->
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400" 
+                                 alt="Professional coding setup with multiple monitors" 
+                                 class="w-full h-48 object-cover"/>
+                            
+                            <div class="p-8">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-2xl font-semibold gradient-text">DevOps Automation</h3>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                <polyline points="15,3 21,3 21,9"/>
+                                                <line x1="10" x2="21" y1="14" y2="3"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-2 rounded-lg glass hover:neon-glow transition-all">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-muted-foreground mb-6">
+                                    Complete CI/CD pipeline automation with Docker containerization, 
+                                    Kubernetes orchestration, and automated testing workflows.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Docker</span>
+                                    <span class="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full">Kubernetes</span>
+                                    <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">AWS</span>
+                                    <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">Terraform</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <button class="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:scale-105 transition-transform">
+                                        View Details
+                                    </button>
+                                    <div class="flex items-center space-x-4 text-sm text-muted-foreground">
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                            </svg>
+                                            <span>156</span>
+                                        </span>
+                                        <span class="flex items-center space-x-1">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                            </svg>
+                                            <span>45</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="px-8 py-4 glass rounded-lg font-medium hover:scale-105 transition-transform neon-glow" data-event="click:viewAllProjects">
+                    View All Projects
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Projects Section -->
+
+    <!-- @COMPONENT: Open Source Section -->
+    <section id="opensource" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Open Source</h2>
+                <p class="text-xl text-muted-foreground">Contributing to the developer community</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @MAP: openSourceProjects.map(project => ( -->
+                <div class="glass-card rounded-2xl p-6 hover:scale-105 transition-transform cursor-pointer" data-mock="true">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold gradient-text">React Animation Library</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="flex items-center space-x-1 text-sm text-muted-foreground">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                </svg>
+                                <span>2.3k</span>
+                            </span>
+                            <span class="flex items-center space-x-1 text-sm text-muted-foreground">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                </svg>
+                                <span>420</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        Lightweight animation library for React components with TypeScript support.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 text-xs bg-primary/20 text-primary rounded">TypeScript</span>
+                        <span class="px-2 py-1 text-xs bg-accent/20 text-accent rounded">React</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-muted-foreground">Updated 2 days ago</span>
+                        <button class="text-primary hover:text-accent transition-colors">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15,3 21,3 21,9"/>
+                                <line x1="10" x2="21" y1="14" y2="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 hover:scale-105 transition-transform cursor-pointer" data-mock="true">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold gradient-text">Vue CLI Plugin</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="flex items-center space-x-1 text-sm text-muted-foreground">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                </svg>
+                                <span>1.8k</span>
+                            </span>
+                            <span class="flex items-center space-x-1 text-sm text-muted-foreground">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                </svg>
+                                <span>310</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        CLI plugin for automated Vue.js project setup with best practices.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 text-xs bg-accent/20 text-accent rounded">Vue.js</span>
+                        <span class="px-2 py-1 text-xs bg-secondary/20 text-secondary rounded">Node.js</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-muted-foreground">Updated 1 week ago</span>
+                        <button class="text-primary hover:text-accent transition-colors">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15,3 21,3 21,9"/>
+                                <line x1="10" x2="21" y1="14" y2="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 hover:scale-105 transition-transform cursor-pointer" data-mock="true">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-semibold gradient-text">DevOps Utils</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="flex items-center space-x-1 text-sm text-muted-foreground">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                </svg>
+                                <span>945</span>
+                            </span>
+                            <span class="flex items-center space-x-1 text-sm text-muted-foreground">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                </svg>
+                                <span>180</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        Collection of utility scripts for Docker and Kubernetes workflows.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 text-xs bg-primary/20 text-primary rounded">Shell</span>
+                        <span class="px-2 py-1 text-xs bg-accent/20 text-accent rounded">Docker</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-muted-foreground">Updated 3 days ago</span>
+                        <button class="text-primary hover:text-accent transition-colors">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15,3 21,3 21,9"/>
+                                <line x1="10" x2="21" y1="14" y2="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Open Source Section -->
+
+    <!-- @COMPONENT: Certifications Section -->
+    <section id="certifications" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Certifications</h2>
+                <p class="text-xl text-muted-foreground">Professional credentials and achievements</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @MAP: certifications.map(cert => ( -->
+                <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform animate-glow" data-mock="true">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 gradient-text">AWS Solutions Architect</h3>
+                    <p class="text-muted-foreground mb-4">Amazon Web Services</p>
+                    <div class="text-sm text-primary font-mono">Valid until Dec 2025</div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform animate-glow" data-mock="true">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="16" height="20" x="4" y="2" rx="2" ry="2"/>
+                            <path d="M9 22v-4h6v4"/>
+                            <path d="M8 6h.01"/>
+                            <path d="M16 6h.01"/>
+                            <path d="M12 6h.01"/>
+                            <path d="M12 10h.01"/>
+                            <path d="M12 14h.01"/>
+                            <path d="M16 10h.01"/>
+                            <path d="M16 14h.01"/>
+                            <path d="M8 10h.01"/>
+                            <path d="M8 14h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 gradient-text">Google Cloud Professional</h3>
+                    <p class="text-muted-foreground mb-4">Google Cloud Platform</p>
+                    <div class="text-sm text-primary font-mono">Valid until Sep 2025</div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform animate-glow" data-mock="true">
+                    <div class="w-16 h-16 bg-gradient-to-r from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 gradient-text">Kubernetes Administrator</h3>
+                    <p class="text-muted-foreground mb-4">Cloud Native Computing Foundation</p>
+                    <div class="text-sm text-primary font-mono">Valid until Mar 2025</div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Certifications Section -->
+
+    <!-- @COMPONENT: Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Let's Connect</h2>
+                <p class="text-xl text-muted-foreground">Ready to build something amazing together?</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <!-- Contact Form -->
+                <div class="glass-card rounded-2xl p-8">
+                    <form class="space-y-6" data-event="submit:handleContactForm">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-3 glass rounded-lg border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors" placeholder="Your name" data-mock="true" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 glass rounded-lg border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors" placeholder="your@email.com" data-mock="true" />
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Subject</label>
+                            <input type="text" class="w-full px-4 py-3 glass rounded-lg border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors" placeholder="Project inquiry" data-mock="true" />
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea rows="6" class="w-full px-4 py-3 glass rounded-lg border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors resize-none" placeholder="Tell me about your project..." data-mock="true"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium neon-glow hover:scale-105 transition-transform">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info & 3D Background -->
+                <div class="relative">
+                    <!-- @FUNCTIONALITY: This should have a Three.js 3D interactive background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-2xl animate-float" data-implementation="Replace with Three.js 3D background"></div>
+                    
+                    <div class="relative glass-card rounded-2xl p-8 z-10">
+                        <h3 class="text-2xl font-semibold mb-8 gradient-text">Get in Touch</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4" data-mock="true">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <p class="text-muted-foreground">alex.chen@email.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4" data-mock="true">
+                                <div class="w-12 h-12 bg-gradient-to-r from-accent to-secondary rounded-lg flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Phone</p>
+                                    <p class="text-muted-foreground">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4" data-mock="true">
+                                <div class="w-12 h-12 bg-gradient-to-r from-secondary to-primary rounded-lg flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p class="text-muted-foreground">San Francisco, CA</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-border">
+                            <h4 class="font-medium mb-4">Response Time</h4>
+                            <p class="text-muted-foreground text-sm">
+                                I typically respond to messages within 24 hours. 
+                                For urgent inquiries, feel free to call directly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Contact Section -->
+
+    <!-- @COMPONENT: Floating Social Menu -->
+    <div class="fixed bottom-8 right-8 z-50 hidden lg:block" data-implementation="Floating radial social menu">
+        <div class="relative">
+            <button class="w-14 h-14 bg-primary rounded-full flex items-center justify-center neon-glow hover:scale-110 transition-transform" data-event="click:toggleSocialMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect width="4" height="12" x="2" y="9"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </button>
+            
+            <!-- @STATE: socialMenuOpen:boolean = false -->
+            <div class="absolute bottom-16 right-0 space-y-3 transition-all duration-300" data-bind="socialMenuOpen">
+                <a href="#" class="block w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all" data-mock="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                    </svg>
+                </a>
+                <a href="#" class="block w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all" data-mock="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect width="4" height="12" x="2" y="9"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="#" class="block w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all" data-mock="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: Floating Social Menu -->
+
+    <!-- @COMPONENT: Mobile Social Bar -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
+        <div class="glass border-t border-border">
+            <div class="flex justify-around py-4">
+                <a href="#" class="p-3 rounded-lg hover:bg-primary/20 transition-colors" data-mock="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                    </svg>
+                </a>
+                <a href="#" class="p-3 rounded-lg hover:bg-primary/20 transition-colors" data-mock="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect width="4" height="12" x="2" y="9"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+                <a href="#" class="p-3 rounded-lg hover:bg-primary/20 transition-colors" data-mock="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                    </svg>
+                </a>
+                <a href="#" class="p-3 rounded-lg hover:bg-primary/20 transition-colors" data-mock="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: Mobile Social Bar -->
+
+    <!-- JavaScript for Cursor and Interactions -->
+    <script>
+    (function() {
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorGlow = document.getElementById('cursor-glow');
+        
+        if (cursor && cursorGlow) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX - 10 + 'px';
+                cursor.style.top = e.clientY - 10 + 'px';
+                cursorGlow.style.left = e.clientX - 20 + 'px';
+                cursorGlow.style.top = e.clientY - 20 + 'px';
+            });
+
+            // Magnetic hover effect
+            document.querySelectorAll('button, a, .project-card, .skill-node').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(1.5)';
+                    cursorGlow.style.transform = 'scale(1.2)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursorGlow.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 23, 42, 0.8)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.3)';
+            }
+        });
+
+        // TODO: Implement business logic, API calls, or state management
+        // TODO: Add Three.js initialization for 3D elements
+        // TODO: Add form submission handling
+        // TODO: Add theme toggle functionality
+        // TODO: Add social menu toggle functionality
+    })();
+    </script>
+</body>
+</html>
