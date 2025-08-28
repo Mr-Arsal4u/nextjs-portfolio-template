@@ -1,0 +1,107 @@
+Portfolio Website Creation Prompt (Alternative Design)
+
+Create a modern, creative, and visually striking portfolio website for a Full Stack Developer, focusing on 3D interactivity, elegant typography, and minimal-yet-creative design.
+
+🏗️ Technical Requirements
+
+Framework: Next.js 14+ with TypeScript
+
+Styling: Tailwind CSS + custom gradients
+
+Animations: Framer Motion for transitions
+
+3D Effects: Three.js for interactive background & skill showcase
+
+Icons: Lucide React
+
+Performance: Next.js Image optimization, lazy loading
+
+📱 Layout Structure
+
+Navigation Bar: Minimal glassmorphism navbar with blur effect
+
+Hero Section: Split-screen hero → left side animated text & intro, right side interactive 3D object (rotating globe/cube/abstract shape)
+
+About Section: Clean card layout with gradient borders
+
+Experience Section: Vertical cards with animated hover details
+
+Skills Section: Radial/constellation-style 3D skill map (interactive nodes)
+
+Projects Section: Large immersive project showcase (big images, hover reveal details)
+
+Open Source Section: Highlight GitHub contributions in animated list
+
+Certifications Section: Vertical stacked cards with glow effect
+
+Contact Section: Split layout → contact form + interactive 3D background
+
+Social Links: Floating radial menu (desktop) / bottom bar (mobile)
+
+CV Page: Minimal white-paper styled resume with dark theme option
+
+✨ Key Features
+
+Glassmorphism & Gradients → soft blurred panels, neon gradient accents
+
+Custom Cursor: Magnetic hover effect + glowing tech cursor
+
+Typewriter + Morphing Text: Hero section cycles between roles (Developer, Engineer, Creator)
+
+3D Skills Map: Nodes connect dynamically when hovered
+
+Project Cards: Expanding modal with full project details & live demo link
+
+Dark/Light Toggle: Smooth theme switcher
+
+🎨 Design Style
+
+Colors:
+
+Background: Gradient dark blues & purples (#0f172a → #1e293b → #4c1d95)
+
+Accent Colors: Neon cyan (#22d3ee), Lime (#84cc16), Magenta (#ec4899)
+
+Typography: Futuristic sans-serif + mono font mix
+
+Borders: Gradient stroke borders with glow hover effect
+
+Shadows: Soft neon glow shadows
+
+Cards: Glass panels with frosted effect
+
+📱 Responsive Behavior
+
+Mobile First → collapsible sections with stacked layout
+
+Tablet → two-column project grids
+
+Desktop → immersive wide layouts with 3D interactions
+
+🎭 Animations
+
+Entrance: Fade + scale in with staggered delays
+
+Scroll Animations: Parallax + smooth reveal
+
+Hover Animations: Magnetic pull, glow expansion
+
+3D Transforms: Floating, rotating skill nodes + smooth drag controls
+
+🚀 Performance Goals
+
+Lazy loading of 3D models & images
+
+60fps optimized Three.js canvas
+
+Responsive image handling
+
+Code splitting for sections
+
+🎯 User Experience
+
+Minimal yet futuristic → clean layouts, high focus on interactivity
+
+Navigation should feel immersive → smooth scrolling + section highlights
+
+Showcases creativity & modern frontend skills
