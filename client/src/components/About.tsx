@@ -4,7 +4,7 @@ import { CheckCircle } from "lucide-react";
 export default function About() {
   const skills = [
     "Frontend Development",
-    "Backend Architecture", 
+    "Backend Architecture",
     "DevOps & Cloud",
     "UI/UX Design"
   ];
@@ -37,7 +37,7 @@ export default function About() {
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">About Me</h2>
           <p className="text-xl text-muted-foreground">Passionate developer with a love for creating innovative solutions</p>
         </motion.div>
-        
+
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             variants={containerVariants}
@@ -49,12 +49,10 @@ export default function About() {
             <motion.div variants={itemVariants} className="glass-card rounded-2xl p-8">
               <h3 className="text-2xl font-semibold mb-4 gradient-text">My Journey</h3>
               <p className="text-muted-foreground leading-relaxed">
-                With 5+ years of experience in full-stack development, I've worked with startups 
-                and enterprise companies to build scalable web applications. My passion lies in 
-                creating seamless user experiences backed by robust, efficient code.
+                Full-stack developer with 3+ years of experience delivering scalable, production-ready web applications for startups and enterprise teams. I focus on building intuitive user experiences backed by clean, efficient, and maintainable code.
               </p>
             </motion.div>
-            
+
             <motion.div variants={itemVariants} className="glass-card rounded-2xl p-8">
               <h3 className="text-2xl font-semibold mb-4 gradient-text">What I Do</h3>
               <div className="grid grid-cols-2 gap-4">
@@ -68,19 +66,18 @@ export default function About() {
                     className="flex items-center space-x-2"
                     data-testid={`skill-${skill.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    <div className={`w-2 h-2 rounded-full ${
-                      index === 0 ? 'bg-neon-cyan' :
-                      index === 1 ? 'bg-neon-lime' :
-                      index === 2 ? 'bg-neon-magenta' :
-                      'bg-neon-cyan'
-                    }`} />
+                    <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-neon-cyan' :
+                        index === 1 ? 'bg-neon-lime' :
+                          index === 2 ? 'bg-neon-magenta' :
+                            'bg-neon-cyan'
+                      }`} />
                     <span>{skill}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -89,15 +86,15 @@ export default function About() {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-                alt="Modern tech workspace with multiple monitors" 
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                alt="Modern tech workspace with multiple monitors"
                 className="w-full h-96 object-cover"
                 data-testid="about-image"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

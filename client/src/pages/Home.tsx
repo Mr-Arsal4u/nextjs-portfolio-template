@@ -21,7 +21,7 @@ export default function Home() {
         <Experience />
         <Skills />
         <Projects />
-        <OpenSource />
+        {/* <OpenSource /> */}
         <Certifications />
         <Contact />
       </main>

@@ -47,7 +47,7 @@ export default function Hero() {
                 className="text-6xl md:text-8xl font-bold leading-tight"
               >
                 <span className="block">Hi, I'm</span>
-                <span className="block gradient-text">Alex Chen</span>
+                <span className="block gradient-text">Saqib Rafique</span>
               </motion.h1>
               
               <motion.div

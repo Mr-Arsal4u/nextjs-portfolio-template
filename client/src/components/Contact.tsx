@@ -43,19 +43,19 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "alex.chen@email.com",
+      value: "saibali497@email.com",
       gradient: "from-neon-cyan to-neon-lime"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "+92 304 4586063",
       gradient: "from-neon-lime to-neon-magenta"
     },
     {
       icon: MapPin,
       title: "Location", 
-      value: "San Francisco, CA",
+      value: "Lahore, Pakistan",
       gradient: "from-neon-magenta to-neon-cyan"
     }
   ];

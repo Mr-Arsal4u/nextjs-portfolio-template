@@ -8,10 +8,9 @@ export default function SocialMenu() {
   const isMobile = useIsMobile();
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Mail, href: "#", label: "Email" }
+    { icon: Github, href: "https://github.com/saqib-777", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/muhammad-saqib-ali-shahzad-43218832b", label: "LinkedIn" },
+    { icon: Mail, href: "saibali497@gmail.com", label: "Email" }
   ];
 
   if (isMobile) {

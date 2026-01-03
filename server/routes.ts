@@ -46,11 +46,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Portfolio data endpoints (for future use)
   app.get("/api/portfolio", async (req, res) => {
     res.json({
-      name: "Alex Chen",
+      name: "Saqib Rafique",
       title: "Full Stack Developer",
-      email: "alex.chen@email.com",
-      phone: "+1 (555) 123-4567",
-      location: "San Francisco, CA"
+      email: "saibali497@gmail.com",
+      phone: "+92 304 4586063",
+      location: "Lahore, Pakistan",
     });
   });
 

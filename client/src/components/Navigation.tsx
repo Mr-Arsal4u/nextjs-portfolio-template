@@ -55,7 +55,7 @@ export default function Navigation() {
               onClick={() => scrollToSection("home")}
               data-testid="logo"
             >
-              Alex Chen
+            Saqib Rafique
             </span>
           </motion.div>
 

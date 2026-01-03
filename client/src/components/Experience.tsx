@@ -11,32 +11,64 @@ interface Experience {
 }
 
 export default function Experience() {
-  const experiences: Experience[] = [
-    {
-      title: "Senior Full Stack Developer",
-      company: "TechCorp Solutions",
-      period: "2022 - Present",
-      description: "Led development of microservices architecture serving 1M+ users. Implemented CI/CD pipelines and mentored junior developers.",
-      technologies: ["React", "Node.js", "AWS", "Docker"],
-      icon: CheckCircle
-    },
-    {
-      title: "Frontend Developer",
-      company: "StartupCo",
-      period: "2020 - 2022",
-      description: "Built responsive web applications from scratch. Collaborated with design team to create pixel-perfect UI implementations.",
-      technologies: ["Vue.js", "TypeScript", "Figma"],
-      icon: Star
-    },
-    {
-      title: "Junior Developer",
-      company: "WebDev Agency",
-      period: "2019 - 2020",
-      description: "Started my professional journey building client websites and learning modern web development practices.",
-      technologies: ["HTML/CSS", "JavaScript", "WordPress"],
-      icon: Zap
-    }
-  ];
+  const experiences: Experience[] =
+    [
+      {
+        title: "Full Stack Developer",
+        company: "Company Name",
+        period: "2023 – 2025",
+        duration: "2 Years",
+        description:
+          "Building scalable web applications using modern frontend frameworks and reliable backend systems. Working on APIs, authentication, database design, and performance optimization, while collaborating with teams to deliver stable, production-ready features.",
+        technologies: [
+          "React",
+          "Next.js",
+          "Vue.js",
+          "PHP",
+          "Laravel",
+          "Node.js",
+          "Python",
+          "MySQL",
+          "AWS",
+          "Docker"
+        ],
+        icon: CheckCircle
+      },
+      {
+        title: "Frontend Developer",
+        company: "Company Name",
+        period: "2022 – 2023",
+        duration: "1 Year",
+        description:
+          "Developed responsive and user-friendly interfaces from design mockups. Focused on clean component structure, API integration, and improving usability across different devices and browsers.",
+        technologies: [
+          "React",
+          "Vue.js",
+          "TypeScript",
+          "JavaScript",
+          "Tailwind CSS",
+          "Figma"
+        ],
+        icon: Star
+      },
+      {
+        title: "Junior Web Developer",
+        company: "Company Name",
+        period: "2021 – 2022",
+        duration: "6 Months",
+        description:
+          "Started my professional journey by building and maintaining websites while learning modern development workflows, basic backend logic, and real-world project requirements.",
+        technologies: [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "PHP",
+          "WordPress",
+          "Git"
+        ],
+        icon: Zap
+      }
+    ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,7 +102,7 @@ export default function Experience() {
         <div className="relative">
           {/* Timeline Line */}
           <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-cyan via-neon-lime to-neon-magenta"></div>
-          
+
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -85,14 +117,13 @@ export default function Experience() {
                 className="flex items-start space-x-8"
                 data-testid={`experience-${index}`}
               >
-                <div className={`flex-shrink-0 w-16 h-16 bg-gradient-to-r ${
-                  index === 0 ? 'from-neon-cyan to-neon-lime' :
-                  index === 1 ? 'from-neon-lime to-neon-magenta' :
-                  'from-neon-magenta to-neon-cyan'
-                } rounded-full flex items-center justify-center glass-card`}>
+                <div className={`flex-shrink-0 w-16 h-16 bg-gradient-to-r ${index === 0 ? 'from-neon-cyan to-neon-lime' :
+                    index === 1 ? 'from-neon-lime to-neon-magenta' :
+                      'from-neon-magenta to-neon-cyan'
+                  } rounded-full flex items-center justify-center glass-card`}>
                   <experience.icon className="w-6 h-6" />
                 </div>
-                
+
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   className="flex-1 glass-card rounded-2xl p-8 hover:neon-glow transition-all cursor-pointer"
@@ -104,18 +135,17 @@ export default function Experience() {
                     </div>
                     <div className="text-sm font-mono text-neon-cyan">{experience.period}</div>
                   </div>
-                  
+
                   <p className="text-muted-foreground mb-4">{experience.description}</p>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {experience.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className={`px-3 py-1 text-xs rounded-full ${
-                          techIndex % 3 === 0 ? 'bg-neon-cyan/20 text-neon-cyan' :
-                          techIndex % 3 === 1 ? 'bg-neon-lime/20 text-neon-lime' :
-                          'bg-neon-magenta/20 text-neon-magenta'
-                        }`}
+                        className={`px-3 py-1 text-xs rounded-full ${techIndex % 3 === 0 ? 'bg-neon-cyan/20 text-neon-cyan' :
+                            techIndex % 3 === 1 ? 'bg-neon-lime/20 text-neon-lime' :
+                              'bg-neon-magenta/20 text-neon-magenta'
+                          }`}
                         data-testid={`tech-${tech.toLowerCase()}`}
                       >
                         {tech}
