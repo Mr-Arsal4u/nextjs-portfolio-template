@@ -21,15 +21,52 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-      setFormData({ name: "", email: "", subject: "", message: "" });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: "Message sent!",
+          description: data.message || "Thank you for your message. Our team will get back to you soon.",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        // Show specific validation errors if available
+        let errorMessage = data.message || "Failed to send message. Please try again.";
+
+        // If there are specific field errors, show them
+        if (data.errors && Array.isArray(data.errors) && data.errors.length > 0) {
+          const fieldErrors = data.errors.map((err: any) => {
+            const field = err.path?.join('.') || 'field';
+            return `${field}: ${err.message}`;
+          }).join(', ');
+          errorMessage = fieldErrors;
+        }
+
+        toast({
+          title: "Error",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -43,19 +80,19 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "alex.chen@email.com",
+      value: "suzalabs@gmail.com",
       gradient: "from-neon-cyan to-neon-lime"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
+      value: "+92-319-4027641",
       gradient: "from-neon-lime to-neon-magenta"
     },
     {
       icon: MapPin,
-      title: "Location", 
-      value: "San Francisco, CA",
+      title: "Location",
+      value: "Lahore, Pakistan",
       gradient: "from-neon-magenta to-neon-cyan"
     }
   ];
@@ -70,8 +107,8 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Let's Connect</h2>
-          <p className="text-xl text-muted-foreground">Ready to build something amazing together?</p>
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Get In Touch</h2>
+          <p className="text-xl text-muted-foreground">Ready to transform your business with innovative technology solutions?</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -112,7 +149,7 @@ export default function Contact() {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">Subject</label>
                 <Input
@@ -126,7 +163,7 @@ export default function Contact() {
                   data-testid="input-subject"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">Message</label>
                 <Textarea
@@ -134,13 +171,13 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell us about your project or inquiry..."
                   required
                   className="glass border-border focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"
                   data-testid="textarea-message"
                 />
               </div>
-              
+
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -164,10 +201,10 @@ export default function Contact() {
             <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/20 via-neon-lime/20 to-neon-magenta/20 rounded-2xl animate-float">
               <ThreeBackground />
             </div>
-            
+
             <div className="relative glass-card rounded-2xl p-8 z-10">
               <h3 className="text-2xl font-semibold mb-8 gradient-text">Get in Touch</h3>
-              
+
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.div
@@ -189,12 +226,12 @@ export default function Contact() {
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="mt-8 pt-8 border-t border-border">
                 <h4 className="font-medium mb-4">Response Time</h4>
                 <p className="text-muted-foreground text-sm">
-                  I typically respond to messages within 24 hours. 
-                  For urgent inquiries, feel free to call directly.
+                  Our team typically responds to messages within 24 hours.
+                  For urgent inquiries, feel free to call directly or schedule a consultation.
                 </p>
               </div>
             </div>

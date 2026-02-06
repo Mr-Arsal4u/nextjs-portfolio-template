@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -28,9 +29,9 @@ export default function Navigation() {
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
-    { id: "experience", label: "Experience" },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
+    { id: "services", label: "Services" },
+    { id: "portfolio", label: "Portfolio" },
+    { id: "about-us", label: "About Us" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -50,13 +51,24 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             className="flex-shrink-0"
           >
+            {logoError ? (
             <span 
               className="text-xl font-bold gradient-text cursor-pointer" 
               onClick={() => scrollToSection("home")}
               data-testid="logo"
             >
-              Alex Chen
+              Suza Labs
             </span>
+            ) : (
+              <img 
+                src="/logo.svg"
+                alt="Suza Labs"
+                className="h-28 cursor-pointer object-contain"
+                onClick={() => scrollToSection("home")}
+                onError={() => setLogoError(true)}
+                data-testid="logo"
+              />
+            )}
           </motion.div>
 
           {/* Desktop Navigation */}

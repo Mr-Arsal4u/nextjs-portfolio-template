@@ -16,40 +16,40 @@ interface Project {
 export default function Projects() {
   const projects: Project[] = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-featured e-commerce platform built with React and Node.js. Features include real-time inventory, payment processing, and admin dashboard.",
+      title: "Enterprise E-Commerce Solution",
+      description: "A comprehensive e-commerce platform for a Fortune 500 client, handling millions of transactions. Features include real-time inventory management, AI-powered recommendations, and seamless payment integration.",
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      technologies: ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
       githubUrl: "#",
       liveUrl: "#",
       stars: 124,
       forks: 32
     },
     {
-      title: "AI Analytics Dashboard",
-      description: "Advanced analytics dashboard with machine learning insights. Real-time data visualization and predictive analytics for business intelligence.",
+      title: "AI-Powered Business Intelligence",
+      description: "Advanced analytics platform with machine learning capabilities for a leading financial services company. Real-time data visualization, predictive analytics, and automated reporting.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
-      technologies: ["Vue.js", "Python", "TensorFlow", "D3.js"],
+      technologies: ["Vue.js", "Python", "TensorFlow", "D3.js", "PostgreSQL"],
       githubUrl: "#",
       liveUrl: "#",
       stars: 89,
       forks: 15
     },
     {
-      title: "Real-Time Chat App",
-      description: "Modern chat application with real-time messaging, file sharing, and video calls. Built with Socket.io and WebRTC technology.",
+      title: "Healthcare Communication Platform",
+      description: "Secure real-time communication platform for healthcare providers. HIPAA-compliant messaging, video consultations, and patient portal integration.",
       image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
-      technologies: ["Next.js", "Socket.io", "WebRTC", "Redis"],
+      technologies: ["Next.js", "Socket.io", "WebRTC", "Redis", "HIPAA"],
       githubUrl: "#",
       liveUrl: "#",
       stars: 67,
       forks: 28
     },
     {
-      title: "DevOps Automation",
-      description: "Complete CI/CD pipeline automation with Docker containerization, Kubernetes orchestration, and automated testing workflows.",
+      title: "Cloud Infrastructure Migration",
+      description: "Complete cloud migration and DevOps transformation for a tech startup. Containerized microservices architecture with automated CI/CD pipelines and monitoring.",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
-      technologies: ["Docker", "Kubernetes", "AWS", "Terraform"],
+      technologies: ["Docker", "Kubernetes", "AWS", "Terraform", "Jenkins"],
       githubUrl: "#",
       liveUrl: "#",
       stars: 156,
@@ -82,8 +82,8 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Projects</h2>
-          <p className="text-xl text-muted-foreground">Some of my favorite work</p>
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Our Projects</h2>
+          <p className="text-xl text-muted-foreground">Showcasing our innovative solutions and client success stories</p>
         </motion.div>
 
         <motion.div
