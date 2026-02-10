@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CursorProvider } from "@/hooks/useCursor";
+import { ThemeProvider } from "@/hooks/useTheme";
 import CustomCursor from "@/components/CustomCursor";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Home from "@/pages/Home";
@@ -29,14 +30,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CursorProvider>
-        <CustomCursor />
-        <WhatsAppButton />
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </CursorProvider>
+      <ThemeProvider>
+        <CursorProvider>
+          <CustomCursor />
+          <WhatsAppButton />
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </CursorProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

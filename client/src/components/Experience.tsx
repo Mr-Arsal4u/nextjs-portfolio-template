@@ -69,7 +69,7 @@ export default function Experience() {
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-cyan via-neon-lime to-neon-magenta"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-logo-dark-blue to-logo-teal"></div>
           
           <motion.div
             variants={containerVariants}
@@ -102,7 +102,7 @@ export default function Experience() {
                       <h3 className="text-2xl font-semibold gradient-text">{experience.title}</h3>
                       <p className="text-lg text-muted-foreground">{experience.company}</p>
                     </div>
-                    <div className="text-sm font-mono text-neon-cyan">{experience.period}</div>
+                    <div className="text-sm font-mono text-logo-teal">{experience.period}</div>
                   </div>
                   
                   <p className="text-muted-foreground mb-4">{experience.description}</p>
@@ -112,9 +112,8 @@ export default function Experience() {
                       <span
                         key={techIndex}
                         className={`px-3 py-1 text-xs rounded-full ${
-                          techIndex % 3 === 0 ? 'bg-neon-cyan/20 text-neon-cyan' :
-                          techIndex % 3 === 1 ? 'bg-neon-lime/20 text-neon-lime' :
-                          'bg-neon-magenta/20 text-neon-magenta'
+                          techIndex % 2 === 0 ? 'bg-logo-dark-blue/20 text-logo-dark-blue' :
+                          'bg-logo-teal/20 text-logo-teal'
                         }`}
                         data-testid={`tech-${tech.toLowerCase()}`}
                       >

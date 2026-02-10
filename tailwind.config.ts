@@ -64,6 +64,9 @@ export default {
         "neon-cyan": "var(--neon-cyan)",
         "neon-lime": "var(--neon-lime)",
         "neon-magenta": "var(--neon-magenta)",
+        // Logo colors
+        "logo-dark-blue": "var(--logo-dark-blue)",
+        "logo-teal": "var(--logo-teal)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],

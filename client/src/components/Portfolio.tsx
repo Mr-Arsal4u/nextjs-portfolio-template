@@ -61,7 +61,7 @@ export default function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs rounded-full bg-neon-cyan/20 text-neon-cyan backdrop-blur-sm">
+                      <span className="px-3 py-1 text-xs rounded-full bg-logo-dark-blue/20 text-logo-dark-blue backdrop-blur-sm">
                         {item.category}
                       </span>
                     </div>
@@ -83,13 +83,13 @@ export default function Portfolio() {
                     <div className="grid grid-cols-3 gap-4 mb-6 shrink-0">
                       {item.results.map((result, resultIndex) => (
                         <div key={resultIndex} className="text-center p-3 glass-card rounded-lg flex flex-col justify-center">
-                          <div className={`w-8 h-8 mx-auto mb-2 rounded-full flex items-center justify-center ${resultIndex === 0 ? 'bg-neon-cyan/20' :
-                            resultIndex === 1 ? 'bg-neon-lime/20' :
-                              'bg-neon-magenta/20'
+                          <div className={`w-8 h-8 mx-auto mb-2 rounded-full flex items-center justify-center ${resultIndex === 0 ? 'bg-logo-dark-blue/20' :
+                            resultIndex === 1 ? 'bg-logo-teal/20' :
+                              'bg-logo-dark-blue/20'
                             }`}>
-                            {resultIndex === 0 && <TrendingUp className="w-4 h-4 text-neon-cyan" />}
-                            {resultIndex === 1 && <Award className="w-4 h-4 text-neon-lime" />}
-                            {resultIndex === 2 && <Users className="w-4 h-4 text-neon-magenta" />}
+                            {resultIndex === 0 && <TrendingUp className="w-4 h-4 text-logo-dark-blue" />}
+                            {resultIndex === 1 && <Award className="w-4 h-4 text-logo-teal" />}
+                            {resultIndex === 2 && <Users className="w-4 h-4 text-logo-dark-blue" />}
                           </div>
                           <p className="text-[10px] text-muted-foreground leading-tight">{result}</p>
                         </div>
@@ -100,9 +100,8 @@ export default function Portfolio() {
                       {item.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className={`px-3 py-1 text-[10px] rounded-full font-medium ${techIndex % 3 === 0 ? 'bg-neon-cyan/20 text-neon-cyan' :
-                            techIndex % 3 === 1 ? 'bg-neon-lime/20 text-neon-lime' :
-                              'bg-neon-magenta/20 text-neon-magenta'
+                          className={`px-3 py-1 text-[10px] rounded-full font-medium ${techIndex % 2 === 0 ? 'bg-logo-dark-blue/20 text-logo-dark-blue' :
+                              'bg-logo-teal/20 text-logo-teal'
                             }`}
                         >
                           {tech}

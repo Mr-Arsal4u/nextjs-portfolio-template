@@ -64,9 +64,8 @@ export default function Services() {
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center space-x-2 text-sm">
-                      <div className={`w-1.5 h-1.5 rounded-full ${index % 3 === 0 ? 'bg-neon-cyan' :
-                          index % 3 === 1 ? 'bg-neon-lime' :
-                            'bg-neon-magenta'
+                      <div className={`w-1.5 h-1.5 rounded-full ${index % 2 === 0 ? 'bg-logo-dark-blue' :
+                            'bg-logo-teal'
                         }`} />
                       <span className="text-muted-foreground">{feature}</span>
                     </li>

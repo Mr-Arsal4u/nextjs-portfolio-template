@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 export default function Sitemap() {
     const pages = [
         { name: "Home", path: "/" },
-        { name: "About Us", path: "/#about-us" },
+        { name: "Our Mission", path: "/#our-mission" },
         { name: "Portfolio", path: "/#portfolio" },
         { name: "Contact", path: "/#contact" },
         { name: "Privacy Policy", path: "/privacy-policy" },

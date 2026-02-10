@@ -47,7 +47,7 @@ export default function PortfolioDetail() {
               </Link>
 
               <div className="mb-6">
-                <span className="px-4 py-2 text-sm rounded-full bg-neon-cyan/20 text-neon-cyan backdrop-blur-sm">
+                <span className="px-4 py-2 text-sm rounded-full bg-logo-dark-blue/20 text-logo-dark-blue backdrop-blur-sm">
                   {item.category}
                 </span>
               </div>
@@ -124,13 +124,13 @@ export default function PortfolioDetail() {
                       transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                       className="glass-card rounded-xl p-6 text-center"
                     >
-                      <div className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center ${index === 0 ? 'bg-neon-cyan/20' :
-                        index === 1 ? 'bg-neon-lime/20' :
-                          'bg-neon-magenta/20'
+                      <div className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center ${index === 0 ? 'bg-logo-dark-blue/20' :
+                        index === 1 ? 'bg-logo-teal/20' :
+                          'bg-logo-dark-blue/20'
                         }`}>
-                        {index === 0 && <TrendingUp className="w-6 h-6 text-neon-cyan" />}
-                        {index === 1 && <Award className="w-6 h-6 text-neon-lime" />}
-                        {index === 2 && <Users className="w-6 h-6 text-neon-magenta" />}
+                        {index === 0 && <TrendingUp className="w-6 h-6 text-logo-dark-blue" />}
+                        {index === 1 && <Award className="w-6 h-6 text-logo-teal" />}
+                        {index === 2 && <Users className="w-6 h-6 text-logo-dark-blue" />}
                       </div>
                       <p className="text-lg font-semibold">{result}</p>
                     </motion.div>
@@ -151,7 +151,7 @@ export default function PortfolioDetail() {
                         transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                         className="flex items-start space-x-4 glass-card rounded-lg p-4"
                       >
-                        <CheckCircle className="w-6 h-6 text-neon-cyan flex-shrink-0 mt-1" />
+                        <CheckCircle className="w-6 h-6 text-logo-teal flex-shrink-0 mt-1" />
                         <p className="text-lg text-muted-foreground">{impact}</p>
                       </motion.div>
                     ))}
@@ -166,9 +166,8 @@ export default function PortfolioDetail() {
                   {item.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className={`px-4 py-2 text-sm rounded-full font-medium ${index % 3 === 0 ? 'bg-neon-cyan/20 text-neon-cyan' :
-                        index % 3 === 1 ? 'bg-neon-lime/20 text-neon-lime' :
-                          'bg-neon-magenta/20 text-neon-magenta'
+                      className={`px-4 py-2 text-sm rounded-full font-medium ${index % 2 === 0 ? 'bg-logo-dark-blue/20 text-logo-dark-blue' :
+                          'bg-logo-teal/20 text-logo-teal'
                         }`}
                     >
                       {tech}

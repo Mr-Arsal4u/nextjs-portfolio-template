@@ -7,7 +7,7 @@ export default function Footer() {
         { icon: Linkedin, href: "https://www.linkedin.com/company/suza-labs/", label: "LinkedIn" },
         { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61587085320994", label: "Facebook" },
         { icon: Instagram, href: "https://www.instagram.com/suzalabs/", label: "Instagram" },
-        { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=suzalabs@gmail.com", label: "Email" }
+        { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=info@suzalabs.com", label: "Email" }
     ];
 
     const scrollToSection = (id: string) => {
@@ -29,7 +29,7 @@ export default function Footer() {
                     {/* Company Info */}
                     <div className="space-y-6 flex flex-col items-center md:items-start">
                         <div className="flex items-center space-x-2">
-                            <span className="text-2xl font-bold gradient-text">Suza Labs</span>
+                            <span className="text-2xl font-bold text-foreground">Suza Labs</span>
                         </div>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                             Making businesses smarter through technology, automation, and data‑driven solutions.
@@ -46,7 +46,7 @@ export default function Footer() {
                                     className="w-10 h-10 glass rounded-full flex items-center justify-center hover:neon-glow transition-all"
                                     aria-label={social.label}
                                 >
-                                    <social.icon className="w-5 h-5 text-muted-foreground hover:text-white transition-colors" />
+                                    <social.icon className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />
                                 </motion.a>
                             ))}
                         </div>
@@ -54,13 +54,13 @@ export default function Footer() {
 
                     {/* Services Quick Links */}
                     <div className="space-y-6">
-                        <h4 className="text-lg font-semibold text-white">Our Services</h4>
+                        <h4 className="text-lg font-semibold text-foreground">Our Services</h4>
                         <ul className="space-y-3 inline-block md:block">
                             {services.map((service, index) => (
                                 <li key={index} className="flex justify-center md:justify-start">
                                     <button
                                         onClick={() => scrollToSection("services")}
-                                        className="text-muted-foreground hover:text-white transition-colors text-sm flex items-center space-x-2 group"
+                                        className="text-muted-foreground hover:text-foreground transition-colors text-sm flex items-center space-x-2 group"
                                     >
                                         <div className="w-1 h-1 rounded-full bg-primary group-hover:scale-150 transition-transform" />
                                         <span className="whitespace-nowrap">{service.title}</span>
@@ -72,7 +72,7 @@ export default function Footer() {
 
                     {/* Resources & Legal */}
                     <div className="space-y-6">
-                        <h4 className="text-lg font-semibold text-white">Resources & Legal</h4>
+                        <h4 className="text-lg font-semibold text-foreground">Resources & Legal</h4>
                         <ul className="space-y-3 inline-block md:block">
                             <li className="flex justify-center md:justify-start">
                                 <a href="/privacy-policy" className="text-muted-foreground hover:text-white transition-colors text-sm flex items-center space-x-2">
@@ -97,7 +97,7 @@ export default function Footer() {
 
                     {/* Contact Summary */}
                     <div className="space-y-6">
-                        <h4 className="text-lg font-semibold text-white">Work With Us</h4>
+                        <h4 className="text-lg font-semibold text-foreground">Work With Us</h4>
                         <p className="text-muted-foreground text-sm max-w-xs mx-auto md:mx-0">
                             Ready to scale your business? Get in touch with our experts today.
                         </p>
@@ -116,8 +116,8 @@ export default function Footer() {
                         © {currentYear} Suza Labs. All rights reserved.
                     </p>
                     <div className="flex space-x-6 text-xs text-muted-foreground">
-                        <span className="hover:text-white cursor-help">Crafted with precision</span>
-                        <span className="hover:text-white cursor-help">Optimized for performance</span>
+                        <span className="hover:text-foreground cursor-help">Crafted with precision</span>
+                        <span className="hover:text-foreground cursor-help">Optimized for performance</span>
                     </div>
                 </div>
             </div>

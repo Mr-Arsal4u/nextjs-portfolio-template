@@ -1,14 +1,59 @@
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Target, Users, Globe, Award } from "lucide-react";
+import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
+
+interface StatCardProps {
+  stat: { label: string; value: number; icon: any };
+  index: number;
+  variants: any;
+}
+
+function AnimatedStatCard({ stat, index, variants }: StatCardProps) {
+  const { count, ref } = useAnimatedCounter({
+    end: stat.value,
+    duration: 2000,
+    startOnView: true,
+    delay: index * 200, // Stagger animation
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={variants}
+      whileHover={{ scale: 1.05 }}
+      className="glass-card rounded-2xl p-6 text-center hover:neon-glow transition-all"
+      data-testid={`stat-${index}`}
+    >
+      <div className={`w-12 h-12 bg-gradient-to-r ${index % 4 === 0 ? 'from-neon-cyan to-neon-lime' :
+          index % 4 === 1 ? 'from-neon-lime to-neon-magenta' :
+            index % 4 === 2 ? 'from-neon-magenta to-neon-cyan' :
+              'from-neon-cyan to-neon-magenta'
+        } rounded-lg flex items-center justify-center mx-auto mb-4`}>
+        <stat.icon className="w-6 h-6" />
+      </div>
+      <div className="text-3xl font-bold gradient-text mb-2">
+        {count}+
+      </div>
+      <div className="text-sm text-muted-foreground">{stat.label}</div>
+    </motion.div>
+  );
+}
 
 export default function About() {
   const skills = [
     "Digital Product Solutions",
     "AI & Intelligent Systems",
     "Data Analytics & BI",
-    "Cloud Infrastructure",
+    "Digital Invoice, POS and ERP",
     "Finance & Business Support",
     "Digital Media & Branding"
+  ];
+
+  const stats = [
+    { label: "Projects Delivered", value: 200, icon: Target },
+    { label: "Happy Clients", value: 150, icon: Users },
+    { label: "Countries Served", value: 25, icon: Globe },
+    { label: "Years Experience", value: 10, icon: Award }
   ];
 
   const containerVariants = {
@@ -71,9 +116,8 @@ export default function About() {
                     className="flex items-center space-x-2"
                     data-testid={`skill-${skill.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    <div className={`w-2 h-2 rounded-full ${index % 3 === 0 ? 'bg-neon-cyan' :
-                      index % 3 === 1 ? 'bg-neon-lime' :
-                        'bg-neon-magenta'
+                    <div className={`w-2 h-2 rounded-full ${index % 2 === 0 ? 'bg-logo-dark-blue' :
+                        'bg-logo-teal'
                       }`} />
                     <span>{skill}</span>
                   </motion.div>
@@ -120,6 +164,24 @@ export default function About() {
             </div>
           </motion.div>
         </div>
+
+        {/* Stats Section */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
+        >
+          {stats.map((stat, index) => (
+            <AnimatedStatCard
+              key={stat.label}
+              stat={stat}
+              index={index}
+              variants={itemVariants}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   );

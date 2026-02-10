@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, Target, Lightbulb, Heart, Award, Globe } from "lucide-react";
+import { Users, Lightbulb, Heart, Award } from "lucide-react";
 
 interface Value {
   title: string;
@@ -37,13 +37,6 @@ export default function AboutUs() {
     }
   ];
 
-  const stats = [
-    { label: "Projects Delivered", value: "200+", icon: Target },
-    { label: "Happy Clients", value: "150+", icon: Users },
-    { label: "Countries Served", value: "25+", icon: Globe },
-    { label: "Years Experience", value: "10+", icon: Award }
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -60,8 +53,9 @@ export default function AboutUs() {
   };
 
   return (
-    <section id="about-us" className="py-20">
+    <section id="our-mission" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Intro - Our Mission */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,37 +63,10 @@ export default function AboutUs() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">About Us</h2>
-          <p className="text-xl text-muted-foreground">The team behind Suza Labs and what drives us</p>
-        </motion.div>
-
-        {/* Stats Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="glass-card rounded-2xl p-6 text-center hover:neon-glow transition-all"
-              data-testid={`stat-${index}`}
-            >
-              <div className={`w-12 h-12 bg-gradient-to-r ${index % 4 === 0 ? 'from-neon-cyan to-neon-lime' :
-                  index % 4 === 1 ? 'from-neon-lime to-neon-magenta' :
-                    index % 4 === 2 ? 'from-neon-magenta to-neon-cyan' :
-                      'from-neon-cyan to-neon-magenta'
-                } rounded-lg flex items-center justify-center mx-auto mb-4`}>
-                <stat.icon className="w-6 h-6" />
-              </div>
-              <div className="text-3xl font-bold gradient-text mb-2">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
-            </motion.div>
-          ))}
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Our Mission</h2>
+          <p className="text-xl text-muted-foreground">
+            The principles, vision, and values that guide every solution we build
+          </p>
         </motion.div>
 
         {/* Mission Section */}
@@ -153,58 +120,6 @@ export default function AboutUs() {
           </div>
         </motion.div>
 
-        {/* Why Choose Us Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass-card rounded-2xl p-8 md:p-12"
-        >
-          <h3 className="text-3xl font-bold gradient-text mb-8 text-center">Why Choose Suza Labs?</h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="w-2 h-2 rounded-full bg-neon-cyan mt-2 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold mb-2">Expert Team</h4>
-                  <p className="text-muted-foreground text-sm">
-                    Our team consists of experienced developers, designers, and strategists with proven track records.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="w-2 h-2 rounded-full bg-neon-lime mt-2 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold mb-2">Cutting-Edge Technology</h4>
-                  <p className="text-muted-foreground text-sm">
-                    We use the latest technologies and best practices to ensure your solution is future-proof.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="w-2 h-2 rounded-full bg-neon-magenta mt-2 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold mb-2">Agile Methodology</h4>
-                  <p className="text-muted-foreground text-sm">
-                    We follow agile practices to deliver results quickly and adapt to changing requirements.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="w-2 h-2 rounded-full bg-neon-cyan mt-2 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold mb-2">24/7 Support</h4>
-                  <p className="text-muted-foreground text-sm">
-                    We provide ongoing support and maintenance to ensure your systems run smoothly.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

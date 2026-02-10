@@ -88,7 +88,7 @@ export default function Certifications() {
               
               <h3 className="text-xl font-semibold mb-2 gradient-text">{cert.title}</h3>
               <p className="text-muted-foreground mb-4">{cert.issuer}</p>
-              <div className="text-sm text-neon-cyan font-mono">Valid until {cert.validUntil}</div>
+              <div className="text-sm text-logo-teal font-mono">Valid until {cert.validUntil}</div>
             </motion.div>
           ))}
         </motion.div>

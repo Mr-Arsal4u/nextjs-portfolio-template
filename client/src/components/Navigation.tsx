@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [logoError, setLogoError] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -28,10 +28,10 @@ export default function Navigation() {
 
   const navItems = [
     { id: "home", label: "Home" },
-    { id: "about", label: "About" },
     { id: "services", label: "Services" },
+    { id: "our-mission", label: "Our Mission" },
+    { id: "about", label: "About" },
     { id: "portfolio", label: "Portfolio" },
-    { id: "about-us", label: "About Us" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -51,24 +51,16 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             className="flex-shrink-0"
           >
-            {logoError ? (
-            <span 
-              className="text-xl font-bold gradient-text cursor-pointer" 
+            <motion.span 
+              className="text-2xl md:text-3xl font-bold cursor-pointer tracking-tight hover:scale-105 transition-transform duration-200"
               onClick={() => scrollToSection("home")}
               data-testid="logo"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Suza Labs
-            </span>
-            ) : (
-              <img 
-                src="/logo.svg"
-                alt="Suza Labs"
-                className="h-28 cursor-pointer object-contain"
-                onClick={() => scrollToSection("home")}
-                onError={() => setLogoError(true)}
-                data-testid="logo"
-              />
-            )}
+              <span className="inline-block text-logo-dark-blue">Suza</span>{" "}
+              <span className="inline-block text-logo-teal opacity-90">Labs</span>
+            </motion.span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -89,6 +81,9 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+            
             {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 rounded-lg glass"

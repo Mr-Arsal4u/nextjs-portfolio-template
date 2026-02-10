@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import ThreeBackground from "@/components/ThreeBackground";
+import { submitContactForm } from "@/utils/formSubmit";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,46 +23,22 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const result = await submitContactForm(formData);
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (result.success) {
         toast({
           title: "Message sent!",
-          description: data.message || "Thank you for your message. Our team will get back to you soon.",
+          description: result.message || "Thank you for your message. Our team will get back to you soon.",
         });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        // Show specific validation errors if available
-        let errorMessage = data.message || "Failed to send message. Please try again.";
-
-        // If there are specific field errors, show them
-        if (data.errors && Array.isArray(data.errors) && data.errors.length > 0) {
-          const fieldErrors = data.errors.map((err: any) => {
-            const field = err.path?.join('.') || 'field';
-            return `${field}: ${err.message}`;
-          }).join(', ');
-          errorMessage = fieldErrors;
-        }
-
-        toast({
-          title: "Error",
-          description: errorMessage,
-          variant: "destructive",
-        });
+        throw new Error(result.error || "Failed to send message");
       }
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -80,7 +57,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "suzalabs@gmail.com",
+      value: "info@suzalabs.com",
       gradient: "from-neon-cyan to-neon-lime"
     },
     {

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  /* Theme Colors */
+  /* Dark Theme Colors (Default) */
   --background: hsl(240, 19%, 6%);
   --foreground: hsl(240, 5%, 96%);
   --card: hsl(240, 10%, 8%);
@@ -30,6 +30,11 @@
   --neon-cyan: hsl(186, 100%, 60%);
   --neon-lime: hsl(84, 71%, 49%);
   --neon-magenta: hsl(328, 85%, 60%);
+  
+  /* Logo Colors */
+  --logo-dark-blue: #2C4B7D;
+  --logo-teal: #419F9F;
+  
   --glass-bg: hsla(240, 19%, 6%, 0.3);
   --glass-border: hsla(240, 5%, 96%, 0.1);
   
@@ -46,6 +51,39 @@
   --shadow-lg: 0px 2px 0px 0px hsl(186 100% 60% / 0.00), 0px 4px 6px -1px hsl(186 100% 60% / 0.00);
   --shadow-xl: 0px 2px 0px 0px hsl(186 100% 60% / 0.00), 0px 8px 10px -1px hsl(186 100% 60% / 0.00);
   --shadow-2xl: 0px 2px 0px 0px hsl(186 100% 60% / 0.00);
+  
+  /* Background gradient for dark mode */
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #4c1d95 100%);
+}
+
+.light {
+  /* Light Theme Colors */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(240, 19%, 6%);
+  --card: hsl(0, 0%, 98%);
+  --card-foreground: hsl(240, 19%, 6%);
+  --popover: hsl(0, 0%, 98%);
+  --popover-foreground: hsl(240, 19%, 6%);
+  --primary: hsl(186, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(240, 5%, 90%);
+  --secondary-foreground: hsl(240, 19%, 6%);
+  --muted: hsl(240, 5%, 90%);
+  --muted-foreground: hsl(240, 10%, 40%);
+  --accent: hsl(186, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(356, 90%, 54%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(240, 6%, 85%);
+  --input: hsl(240, 6%, 85%);
+  --ring: hsl(186, 100%, 50%);
+  
+  /* Light mode glass effects */
+  --glass-bg: hsla(255, 255, 255, 0.7);
+  --glass-border: hsla(240, 19%, 6%, 0.1);
+  
+  /* Light mode background gradient */
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
 }
 
 
@@ -60,9 +98,10 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #4c1d95 100%);
+    background: var(--bg-gradient);
     overflow-x: hidden;
     cursor: none;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   html {
@@ -85,15 +124,20 @@
   }
 
   .glass-card {
-    background: rgba(30, 41, 59, 0.4);
+    background: var(--glass-bg);
     backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .light .glass-card {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
   }
 
-  /* Gradient Text */
+  /* Gradient Text - Using Logo Colors */
   .gradient-text {
-    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-lime), var(--neon-magenta));
+    background: linear-gradient(135deg, var(--logo-dark-blue), var(--logo-teal));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -207,12 +251,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.3);
+    background: var(--muted);
   }
 
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, var(--neon-cyan), var(--neon-lime));
     border-radius: 4px;
+  }
+  
+  .light ::-webkit-scrollbar-track {
+    background: hsl(240, 5%, 95%);
   }
 
   /* Custom Cursor */

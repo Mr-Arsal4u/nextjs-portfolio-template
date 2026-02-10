@@ -11,7 +11,7 @@ export default function SocialMenu() {
     { icon: Linkedin, href: "https://www.linkedin.com/company/suza-labs/", label: "LinkedIn" },
     { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61587085320994", label: "Facebook" },
     { icon: Instagram, href: "https://www.instagram.com/suzalabs/", label: "Instagram" },
-    { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=suzalabs@gmail.com", label: "Email" }
+    { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=info@suzalabs.com", label: "Email" }
   ];
 
   if (isMobile) {

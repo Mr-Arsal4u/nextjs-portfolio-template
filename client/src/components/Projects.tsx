@@ -146,9 +146,8 @@ export default function Projects() {
                         <span
                           key={techIndex}
                           className={`px-3 py-1 text-xs rounded-full ${
-                            techIndex % 3 === 0 ? 'bg-neon-cyan/20 text-neon-cyan' :
-                            techIndex % 3 === 1 ? 'bg-neon-lime/20 text-neon-lime' :
-                            'bg-neon-magenta/20 text-neon-magenta'
+                            techIndex % 2 === 0 ? 'bg-logo-dark-blue/20 text-logo-dark-blue' :
+                            'bg-logo-teal/20 text-logo-teal'
                           }`}
                         >
                           {tech}
