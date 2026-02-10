@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Download } from "lucide-react";
+import { ArrowDown, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThreeBackground from "@/components/ThreeBackground";
 
 export default function Hero() {
   const [currentRole, setCurrentRole] = useState(0);
-  const roles = ["Full Stack Developer", "Software Engineer", "Creative Coder", "Tech Innovator"];
+  const roles = [
+    "Digital Product Solutions",
+    "AI & Intelligent Systems",
+    "Data Analytics & BI",
+    "POS, Invoice & ERP",
+    "Finance & Business Support",
+    "Digital Media & Branding"
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,16 +23,18 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToProjects = () => {
-    const element = document.getElementById("projects");
+  const scrollToServices = () => {
+    const element = document.getElementById("services");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const downloadCV = () => {
-    // In a real implementation, this would download the actual CV
-    window.open("/cv.pdf", "_blank");
+  const scrollToContact = () => {
+    const element = document.getElementById("contact");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -46,10 +55,13 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-6xl md:text-8xl font-bold leading-tight"
               >
-                <span className="block">Hi, I'm</span>
-                <span className="block gradient-text">Alex Chen</span>
+                <span className="block">Welcome to</span>
+                <span className="block">
+                  <span className="text-[#1a3a5a]">Suza</span>{" "}
+                  <span className="text-logo-teal">Labs</span>
+                </span>
               </motion.h1>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -68,17 +80,17 @@ export default function Hero() {
                 </motion.span>
               </motion.div>
             </div>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-xl text-muted-foreground max-w-lg"
             >
-              Crafting digital experiences with cutting-edge technologies. 
-              Passionate about clean code, innovative solutions, and building the future of web.
+              Making businesses smarter through technology, automation, and data‑driven solutions.
+              At Suza Labs, we design and deliver practical digital solutions that help organizations scale, operate efficiently, and make better decisions.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,21 +98,21 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button
-                onClick={scrollToProjects}
+                onClick={scrollToServices}
                 className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium neon-glow hover:scale-105 transition-transform"
                 data-testid="view-work-button"
               >
-                View My Work
+                Explore Our Services
                 <ArrowDown className="ml-2 w-4 h-4" />
               </Button>
               <Button
-                onClick={downloadCV}
+                onClick={scrollToContact}
                 variant="outline"
                 className="px-8 py-4 glass rounded-lg font-medium hover:scale-105 transition-transform"
-                data-testid="download-cv-button"
+                data-testid="contact-button"
               >
-                <Download className="mr-2 w-4 h-4" />
-                Download CV
+                <MessageSquare className="mr-2 w-4 h-4" />
+                Contact Us
               </Button>
             </motion.div>
           </motion.div>
@@ -113,7 +125,7 @@ export default function Hero() {
             className="relative h-96 lg:h-[500px]"
           >
             <ThreeBackground />
-            
+
             {/* Floating Elements */}
             <motion.div
               animate={{ y: [-10, 10, -10] }}

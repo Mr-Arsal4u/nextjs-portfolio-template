@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Mail } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function SocialMenu() {
@@ -8,10 +8,10 @@ export default function SocialMenu() {
   const isMobile = useIsMobile();
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Mail, href: "#", label: "Email" }
+    { icon: Linkedin, href: "https://www.linkedin.com/company/suza-labs/", label: "LinkedIn" },
+    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61587085320994", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/suzalabs/", label: "Instagram" },
+    { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=info@suzalabs.com", label: "Email" }
   ];
 
   if (isMobile) {
@@ -23,6 +23,8 @@ export default function SocialMenu() {
               <motion.a
                 key={index}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="p-3 rounded-lg hover:bg-primary/20 transition-colors"
@@ -54,7 +56,7 @@ export default function SocialMenu() {
             <Linkedin className="w-6 h-6" />
           </motion.div>
         </motion.button>
-        
+
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -67,6 +69,8 @@ export default function SocialMenu() {
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
